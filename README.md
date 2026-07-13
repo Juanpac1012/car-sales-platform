@@ -11,11 +11,6 @@ Car Sales Platform is a full-stack web application designed to manage vehicle in
 - React
 - Vite
 
-### Backend
-
-- ASP.NET Core
-- REST APIs
-
 ### Database
 
 - PostgreSQL
