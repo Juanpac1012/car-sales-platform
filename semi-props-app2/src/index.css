@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ocultar scrollbar horizontal */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ================== THEME ================== */
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 215 25% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+    --primary: 214 84% 42%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 20% 95%;
+    --secondary-foreground: 215 25% 20%;
+    --muted: 210 20% 95%;
+    --muted-foreground: 215 15% 50%;
+    --accent: 208 100% 48%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 20% 88%;
+    --input: 214 20% 88%;
+    --ring: 214 84% 42%;
+    --radius: 0.75rem;
+
+    --sidebar-background: 215 25% 18%;
+    --sidebar-foreground: 210 20% 95%;
+    --sidebar-primary: 214 84% 42%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 215 25% 24%;
+    --sidebar-accent-foreground: 210 20% 95%;
+    --sidebar-border: 215 20% 28%;
+    --sidebar-ring: 214 84% 42%;
+
+    --shadow-card: 0 2px 8px rgba(0,0,0,0.04);
+    --shadow-hover: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  .dark {
+    --background: 215 25% 12%;
+    --foreground: 210 20% 95%;
+    --card: 215 25% 16%;
+    --card-foreground: 210 20% 95%;
+    --popover: 215 25% 16%;
+    --popover-foreground: 210 20% 95%;
+    --primary: 214 84% 48%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 215 25% 20%;
+    --secondary-foreground: 210 20% 95%;
+    --muted: 215 25% 20%;
+    --muted-foreground: 215 15% 60%;
+    --accent: 208 100% 52%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 215 20% 24%;
+    --input: 215 20% 24%;
+    --ring: 214 84% 48%;
+    --sidebar-background: 215 25% 14%;
+    --sidebar-foreground: 210 20% 90%;
+    --sidebar-primary: 214 84% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 215 25% 20%;
+    --sidebar-accent-foreground: 210 20% 90%;
+    --sidebar-border: 215 20% 22%;
+    --sidebar-ring: 214 84% 48%;
+    --shadow-card: 0 2px 8px rgba(0,0,0,0.2);
+    --shadow-hover: 0 4px 12px rgba(0,0,0,0.3);
+  }
+}
+
+/* ================== GLOBAL FIXES ================== */
+@layer base {
+  html,
+  body,
+  #root {
+    overflow-x: hidden; /* Elimina la barra horizontal global */
+    width: 100%;
+    max-width: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  * {
+    @apply border-border;
+  }
+}
+
+/* Login animations */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer utilities {
+  .animate-fadeInUp {
+    animation: fadeInUp 500ms ease-out both;
+  }
+  .animate-delay-1 { animation-delay: 120ms; }
+  .animate-delay-2 { animation-delay: 240ms; }
+  .animate-delay-3 { animation-delay: 360ms; }
+  .animate-delay-4 { animation-delay: 480ms; }
+  /* Submit animation: slight scale + fade for the card, reduce interaction */
+  .login-submitting {
+    pointer-events: none;
+    opacity: 0.85;
+    transform: translateZ(0) scale(0.99);
+    transition: transform 220ms ease, opacity 220ms ease;
+  }
+  /* Button loading pulse for visual feedback */
+  @keyframes pulse-soft {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.98); }
+    100% { transform: scale(1); }
+  }
+  .btn-pulse-loading {
+    animation: pulse-soft 900ms ease-in-out infinite;
+  }
+
+  /* Exit animation: slide down + fade */
+  @keyframes slideDownFade {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+  }
+  .login-exit {
+    animation: slideDownFade 260ms ease-in forwards;
+  }
+}

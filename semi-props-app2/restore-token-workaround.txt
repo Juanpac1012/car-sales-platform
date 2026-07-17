@@ -1,0 +1,28 @@
+# Restaurar workaround de token en BusquedaExterna
+
+Si el refactor del login/contexto no funciona y necesitas volver al workaround que permite leer el token directamente de localStorage en el componente de búsqueda externa, sigue estos pasos:
+
+1. Abre el archivo `src/pages/BusquedaExterna.tsx`.
+2. Busca la línea donde se obtiene el token:
+
+```tsx
+const { token } = useAuth();
+```
+
+3. Reemplázala por:
+
+```tsx
+let { token } = useAuth();
+if (!token) {
+  token = localStorage.getItem("auth_token");
+  console.log('[BusquedaExterna] Token recuperado de localStorage:', token);
+}
+```
+
+4. Guarda los cambios y recarga la app.
+
+Esto asegura que el componente use el token de localStorage si el contexto lo tiene en null, permitiendo que la búsqueda externa funcione aunque el contexto no se actualice correctamente tras el login.
+
+---
+
+**Nota:** Este workaround no es la mejor práctica para producción, pero es útil para desbloquear el flujo si el contexto falla.

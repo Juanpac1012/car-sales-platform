@@ -1,0 +1,4 @@
+project_id = "syfojtzaamtcdzkbmyto"
+
+[api]
+role_claim_key = "app_metadata.role"
